@@ -27,7 +27,7 @@
     opacity: 0.4;
 }
 
-.calendar-month, .calendar-year{
+.calendar-month, .calendar-year, .all-todos{
     width: 70%;
     text-align: center;
     margin: 0 auto;
@@ -37,15 +37,28 @@
     color: white;
     letter-spacing: 5px;
     background-color: #ff5e69;
+    transform: scale(1);
 }
 
+.calendar-month{
+    margin: 7px auto;
+}
+
+.all-todos{
+    background-color: #b47dac;
+}
+.all-todos:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+}
 .calendar-year{
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 
 .calendar-month:hover, .calendar-year:hover{
     cursor: pointer;
+    transform: scale(1.02);
 }
 
 .month-selection, .year-selection{
@@ -96,8 +109,8 @@
 }
 
 .calendar-day{
-    height: 80px;
-    font-size: 20px;
+    height: 70px;
+    font-size: 25px;
     font-weight: bold;
     transition: transform .5s;
 }
@@ -118,6 +131,8 @@
 
 .has-todo{
     background-color:#7db490;
+    cursor: default;
+
 }
 
 .has-todo:hover{
@@ -126,6 +141,7 @@
 
 .option-container{
     display: none;
+    z-index: 10;
 }
 
 .delete-todo, .view-todo{
@@ -137,4 +153,30 @@
 }
 .delete-todo{
     background-color: black;
+}
+
+.confirm-container{
+    height: 75px;
+    width: 20%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: white;
+    z-index: 1;
+    text-align: center;
+    border: 3px ridge #32a1ce;
+    font-weight: bold;
+    font-family: fantasy;
+}
+
+.yesorno-container{
+    display: flex;
+    margin-top: 15px;
+    color: white;
+}
+
+.yes, .no{
+    flex: 1 1;
+
 }
