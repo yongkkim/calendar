@@ -27,8 +27,10 @@ class OneBlock extends React.Component {
             todoDiv: false,
             confirmDiv: false,
             newHeight: 0,
-            newHeightThree: 0
-
+            newHeightThree: 0,
+            a: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_poster_1.jpg",
+            b: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Collage_of_Nine_Dogs.jpg",
+            imgClicked: false
         }
 
 
@@ -47,6 +49,15 @@ class OneBlock extends React.Component {
     btn = 0;
 
     componentDidMount() {
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        if (/iPad|iPhone|iPod/.test(userAgent) && window.innerWidth < 450) {
+            document.getElementsByClassName("calendar")[0].setAttribute("style", "font-family: unset");
+            document.getElementsByClassName("calendar-month")[0].setAttribute("style", "font-family: unset");
+            document.getElementsByClassName("calendar-year")[0].setAttribute("style", "font-family: unset");
+            document.getElementsByClassName("all-todos")[0].setAttribute("style", "font-family: unset");
+        }
+
         this.styleTop = this.tdlist.clientTop;
         this.height = this.divElement.clientHeight - this.divele.clientHeight * 2.5;
         this.heightThree = this.divElement.clientHeight - this.divele.clientHeight;
@@ -290,6 +301,14 @@ class OneBlock extends React.Component {
 
     }
 
+    /* test */
+
+    changeImg = () => {
+        this.setState({
+            imgClicked: !this.state.imgClicked
+        })
+    }
+
     render() {
         cookies.set("todos", this.state.daysWithToDo, { path: '/', expires: new Date(Date.now() + 2592000) });
         let weekdayshortname = this.weekdayshort.map(day => {
@@ -419,6 +438,8 @@ class OneBlock extends React.Component {
                         todoall={this.state.daysWithToDo} date={this.state.dateObject} twoblockheight={this.height}
                         mouseLeave={this.handleLeave} done={this.doneManageAll} />
                 }
+                <img width="400px" height="400px" className="a" src={this.state.imgClicked ? this.state.b : this.state.a}
+                    onClick={e => this.changeImg()} />
             </div>
         );
     }
